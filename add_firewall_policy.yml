@@ -1,0 +1,29 @@
+- hosts: labfgt
+  connection: httpapi
+  collections:
+    - fortinet.fortios
+  vars:
+    ansible_httpapi_use_ssl: true
+    ansible_httpapi_validate_certs: false
+    ansible_httpapi_port: 443
+  tasks:
+    - name: Configure Firewall Policy
+      fortios_firewall_policy:
+        state: "present"
+        firewall_policy:
+          policyid: 1
+          name: "Allow All"
+          srcintf:
+            - name: "any"
+          dstintf:
+            - name: "any"
+          srcaddr:
+            - name: "all"
+          dstaddr:
+            - name: "all"
+          action: "accept"
+          schedule: "always"
+          service:
+            - name: "ALL"
+          logtraffic: "all"
+          nat: "disable"
