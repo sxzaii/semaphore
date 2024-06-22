@@ -1,5 +1,5 @@
 - hosts: labfgt
-  connection: "httpapi"
+  connection: httpapi
   collections:
     - fortinet.fortios
   vars:
